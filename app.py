@@ -22,7 +22,8 @@ productos = [
     {"id": 13, "nombre": "bolso",   "cantidad": 2, "precio": 1.50, "marca": "Totto"},
     {"id": 14, "nombre": "cartuchera",   "cantidad": 1, "precio": 0.20, "marca": "Scribe"},
     {"id": 15, "nombre": "calculadora",   "cantidad": 9, "precio": 1.00, "marca": "Casio"},
-    {"id": 16, "nombre": "agenda",   "cantidad": 11, "precio": 0.75, "marca": "Imagenes"},   
+    {"id": 16, "nombre": "agenda",   "cantidad": 11, "precio": 0.75, "marca": "Imagenes"}, 
+    {"id": 17, "nombre": "cintaAdhesiva",   "cantidad": 14, "precio": 0.35, "marca": "Nata"},  
 ]
 siguiente_id = 4
 
