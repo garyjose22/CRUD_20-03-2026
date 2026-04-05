@@ -41,9 +41,10 @@ def agregar():
     productos.append({
         "id":       siguiente_id,
         "nombre":   request.form["nombre"],
+        "marca":    request.form["marca"] ,
         "cantidad": int(request.form["cantidad"]),
-        "precio":   float(request.form["precio"]),
-        "marca":    request.form["marca"]   
+        "precio":   float(request.form["precio"])
+          
     })
     siguiente_id += 1
     return redirect(url_for("index"))
@@ -55,6 +56,7 @@ def editar(id):
     for p in productos:
         if p["id"] == id:
             p["nombre"]   = request.form["nombre"]
+            p["marca"]    = request.form["marca"]
             p["cantidad"] = int(request.form["cantidad"])
             p["precio"]   = float(request.form["precio"])
     return redirect(url_for("index"))

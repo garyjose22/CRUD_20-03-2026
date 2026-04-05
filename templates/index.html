@@ -52,7 +52,17 @@
               required
             >
           </div>
-
+          
+          <div class="col-md-3"> 
+             <label class="form-label fw-semibold">Marca</label> 
+            <input 
+              type="text" 
+              name="marca" 
+              class="form-control" 
+              placeholder="Ej: Norma"
+              required>       
+          </div>
+          
           <div class="col-md-3">
             <label class="form-label fw-semibold">Cantidad</label>
             <input
@@ -78,15 +88,7 @@
             >
           </div>
 
-          <div class="col-md-3"> 
-             <label class="form-label fw-semibold">Marca</label> 
-            <input 
-              type="text" 
-              name="marca" 
-              class="form-control" 
-              placeholder="Ej: Norma"
-              required>       
-          </div>
+          
 
           <div class="col-md-2">
             <button type="submit" class="btn btn-success w-100">
@@ -115,10 +117,11 @@
             <tr>
               <th>#</th>
               <th>Nombre</th>
+              <th>Marca</th>
               <th>Cantidad</th>
               <th>Precio</th>
               <th>Acciones</th>
-              <th>Marca</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -130,9 +133,9 @@
               <tr id="fila-{{ p.id }}">
                 <td class="text-muted small">{{ p.id }}</td>
                 <td class="fw-semibold">{{ p.nombre }}</td>
+                <td>{{ p.marca }}</td>
                 <td>{{ p.cantidad }}</td>
-                <td>${{ "%.2f" | format(p.precio) }}</td>
-                <td>{{ p.marca }}</td> 
+                <td>${{ "%.2f" | format(p.precio) }}</td> 
                 <td>
 
                   <!-- ── U — Botón Editar (abre fila de edición) ── -->
@@ -158,9 +161,13 @@
                 <td colspan="5">
                   <form action="/editar/{{ p.id }}" method="POST" class="row g-2 align-items-end">
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <label class="form-label small fw-semibold mb-1">Nombre</label>
                       <input type="text"   name="nombre"   id="e-nombre-{{ p.id }}"   class="form-control form-control-sm" required>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label small fw-semibold mb-1">Marca</label>
+                      <input type="text"   name="marca"   id="e-marca-{{ p.id }}"   class="form-control form-control-sm" required>
                     </div>
                     <div class="col-md-3">
                       <label class="form-label small fw-semibold mb-1">Cantidad</label>
@@ -190,8 +197,7 @@
               <tr>
                 <td colspan="5" class="text-center text-muted py-4">
                   No hay productos. ¡Agrega uno arriba!
-                </td>
-                <td>{{ p.marca }}</td> 
+                </td> 
               </tr>
             {% endif %}
             {% set total = namespace(valor=0) %}
