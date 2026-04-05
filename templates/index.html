@@ -78,6 +78,16 @@
             >
           </div>
 
+          <div class="col-md-3"> 
+             <label class="form-label fw-semibold">Marca</label> 
+            <input 
+              type="text" 
+              name="marca" 
+              class="form-control" 
+              placeholder="Ej: Norma"
+              required>       
+          </div>
+
           <div class="col-md-2">
             <button type="submit" class="btn btn-success w-100">
               <i class="bi bi-plus-circle me-1"></i> Agregar
@@ -108,6 +118,7 @@
               <th>Cantidad</th>
               <th>Precio</th>
               <th>Acciones</th>
+              <th>Marca</th>
             </tr>
           </thead>
           <tbody>
@@ -121,12 +132,13 @@
                 <td class="fw-semibold">{{ p.nombre }}</td>
                 <td>{{ p.cantidad }}</td>
                 <td>${{ "%.2f" | format(p.precio) }}</td>
+                <td>{{ p.marca }}</td> 
                 <td>
 
                   <!-- ── U — Botón Editar (abre fila de edición) ── -->
                   <button
                     class="btn btn-warning btn-sm me-1"
-                    onclick="mostrarEdicion({{ p.id }}, '{{ p.nombre }}', {{ p.cantidad }}, {{ p.precio }})">
+                    onclick="mostrarEdicion('{{ p.id }}', '{{ p.nombre }}', '{{ p.cantidad }}', '{{ p.precio }}')">
                     <i class="bi bi-pencil"></i> Editar
                   </button>
 
@@ -163,7 +175,7 @@
                         <i class="bi bi-floppy"></i> Guardar
                       </button>
                       <button type="button" class="btn btn-secondary btn-sm"
-                        onclick="ocultarEdicion({{ p.id }})">
+                        onclick="ocultarEdicion('{{ p.id }}')">
                         ✕
                       </button>
                     </div>
@@ -179,9 +191,19 @@
                 <td colspan="5" class="text-center text-muted py-4">
                   No hay productos. ¡Agrega uno arriba!
                 </td>
+                <td>{{ p.marca }}</td> 
               </tr>
             {% endif %}
-
+            {% set total = namespace(valor=0) %}
+            {% for p in productos %} 
+              {% set total.valor = total.valor + (p.cantidad * p.precio) %} 
+            {% endfor %}
+             
+            <tr class="table-primary fw-bold"> 
+                <td colspan="3">VALOR TOTAL DEL INVENTARIO</td> 
+                <td>${{ "%.2f" | format(total.valor) }}</td> 
+                <td></td> 
+            </tr>
           </tbody>
         </table>
       </div>
